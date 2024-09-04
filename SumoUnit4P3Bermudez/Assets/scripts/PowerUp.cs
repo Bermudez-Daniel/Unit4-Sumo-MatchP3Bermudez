@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateCamera : MonoBehaviour
+public class PowerUp : MonoBehaviour
 {
-    public float rotationSpeed;
+    public PowerUpType powerUpType;
+    public enum PowerUpType
+    {
+        None, Pushback, Rocket
+    }
     void Start()
     {
         
@@ -14,6 +18,5 @@ public class RotateCamera : MonoBehaviour
     void Update()
     {
         
-        transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);  
     }
 }

@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     public bool hasPowerup;
     private float powerupStrength = 15.0f;
     public GameObject powerupIndicator;
+    public PowerUpType currentPowerUp = PowerUpType.None;
+    public GameObject rocketPrefab;
+    private GameObject tmpRocket;
+    private Coroutine powerupCountdown;
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
@@ -20,6 +25,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float forwardInput = Input.GetAxis("Vertical");
+        float sideInput = Input.GetAxis("Horizontal");
+        playerRb.AddForce(focalPoint.transform.right * speed * sideInput);
         playerRb.AddForce(focalPoint.transform.forward * speed * forwardInput);
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
     }
