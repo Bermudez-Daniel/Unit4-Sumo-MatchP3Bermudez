@@ -11,13 +11,13 @@ public class RocketBehaviour : MonoBehaviour
     private float aliveTimer = 5.0f;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-      if(homing && target != null)
+        if (homing && target != null)
         {
             Vector3 moveDirection = (target.transform.position - transform.position).normalized;
             transform.position += moveDirection * speed * Time.deltaTime;
@@ -27,7 +27,7 @@ public class RocketBehaviour : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.CompareTag(target.tag))
+        if (col.gameObject.CompareTag(target.tag))
         {
             Rigidbody targetRigidbody = col.gameObject.GetComponent<Rigidbody>();
             Vector3 away = -col.contacts[0].normal;
@@ -35,13 +35,14 @@ public class RocketBehaviour : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
 
 
     public void Fire(Transform newTarget)
     {
-        target = homingTarget;
+        target = newTarget;
         homing = true;
         Destroy(gameObject, aliveTimer);
     }
 }
+  
